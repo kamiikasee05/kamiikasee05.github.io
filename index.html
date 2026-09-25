@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ezequiel Godoy — Desarrollador full-stack | Productos en producción</title>
+<meta name="description" content="Ricardo Ezequiel Godoy, desarrollador full-stack en Chamical (La Rioja, Argentina). Construyo productos que ya están en producción: TUSTOCK y COMANDER. Software, producto y electrónica aplicada.">
+<meta name="theme-color" content="#171412">
+<meta property="og:title" content="Ezequiel Godoy — Desarrollador full-stack">
+<meta property="og:description" content="Construyo productos que ya están en producción. Software + hardware + producto: TUSTOCK, COMANDER y más.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#171412;
+    --ink-soft:#4a423c;
+    --muted:#756c64;
+    --paper:#fbf9f5;
+    --paper-2:#f2ece2;
+    --card:#ffffff;
+    --line:#e7dfd3;
+    --accent:#e8590c;
+    --accent-dark:#c2410c;
+    --accent-soft:#fdece2;
+    --green:#1f7a4d;
+    --green-soft:#e3f4ea;
+    --radius:16px;
+    --radius-sm:10px;
+    --shadow:0 1px 2px rgba(23,20,18,.06), 0 10px 30px -12px rgba(23,20,18,.18);
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    font-size:16px;
+  }
+  img,svg{max-width:100%}
+  a{color:inherit}
+  h1,h2,h3,h4{line-height:1.15;margin:0 0 .5em;letter-spacing:-.02em}
+  h1{font-size:clamp(1.9rem,7vw,3.2rem);font-weight:800}
+  h2{font-size:clamp(1.5rem,5.2vw,2.25rem);font-weight:800}
+  h3{font-size:1.1rem;font-weight:700}
+  p{margin:0 0 1rem}
+  ul{margin:0}
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  .section{padding:56px 0}
+  .section--tight{padding:40px 0}
+  .eyebrow{
+    display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--accent-dark);background:var(--accent-soft);
+    padding:6px 12px;border-radius:999px;margin-bottom:14px;
+  }
+  .lead{font-size:clamp(1rem,3.6vw,1.18rem);color:var(--ink-soft);max-width:62ch}
+  .center{text-align:center}
+  .center .lead{margin-left:auto;margin-right:auto}
+
+  /* ---------- Header ---------- */
+  .top{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,249,245,.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .top__inner{display:flex;align-items:center;justify-content:space-between;gap:12px;height:60px}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;letter-spacing:-.02em;font-size:1.06rem;text-decoration:none}
+  .brand__mark{
+    width:30px;height:30px;border-radius:8px;flex:0 0 auto;
+    background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+    display:grid;place-items:center;color:#fff;font-weight:800;font-size:.95rem;
+  }
+  .top .btn{display:none}
+  @media (min-width:600px){ .top .btn{display:inline-flex} }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    padding:14px 22px;border-radius:999px;font-weight:700;font-size:1rem;
+    text-decoration:none;border:1.5px solid transparent;cursor:pointer;
+    transition:transform .12s ease, box-shadow .15s ease, background .15s ease;
+    line-height:1.1;text-align:center;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn--primary{background:var(--accent);color:#fff;box-shadow:0 8px 22px -10px rgba(232,89,12,.9)}
+  .btn--primary:hover{background:var(--accent-dark)}
+  .btn--ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn--ghost:hover{border-color:var(--ink)}
+  .btn--light{background:#fff;color:var(--ink)}
+  .btn--wa{background:#25d366;color:#062e14}
+  .btn--wa:hover{background:#1fbe5b}
+  .btn--sm{padding:10px 18px;font-size:.92rem}
+  .btn--block{width:100%}
+  .btn svg{width:18px;height:18px;flex:0 0 auto}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:
+      radial-gradient(1000px 420px at 80% -10%, rgba(232,89,12,.28), transparent 60%),
+      radial-gradient(700px 380px at 0% 110%, rgba(31,122,77,.22), transparent 60%),
+      var(--ink);
+    color:#fdf9f4;
+    padding:52px 0 60px;
+  }
+  .hero h1{color:#fff}
+  .hero .lead{color:#d8cfc6}
+  .hero__cta{display:flex;flex-direction:column;gap:12px;margin:26px 0 14px;max-width:420px}
+  .hero__cta .btn{width:100%}
+  @media (min-width:520px){
+    .hero__cta{flex-direction:row;max-width:none;flex-wrap:wrap}
+    .hero__cta .btn{width:auto}
+  }
+  .hero__note{font-size:.86rem;color:#a99f95;margin:0}
+  .hero__grid{display:grid;gap:36px}
+  @media (min-width:900px){
+    .hero{padding:76px 0 84px}
+    .hero__grid{grid-template-columns:1.08fr .92fr;align-items:center;gap:48px}
+  }
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;list-style:none;padding:0}
+  .chips li{
+    font-size:.8rem;font-weight:600;color:#efe8e1;
+    background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);
+    padding:6px 12px;border-radius:999px;
+  }
+
+  /* ---------- Hero panel (resumen, sin imágenes) ---------- */
+  .panel{
+    background:#100e0d;border:1px solid rgba(255,255,255,.12);
+    border-radius:18px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(0,0,0,.85);
+  }
+  .panel__bar{
+    display:flex;align-items:center;gap:8px;
+    padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.1);
+    font-size:.78rem;font-weight:700;color:#cfc6bd;background:rgba(255,255,255,.04);
+  }
+  .panel__dot{width:9px;height:9px;border-radius:50%;background:#ff5f57}
+  .panel__dot--y{background:#febc2e}
+  .panel__dot--g{background:#28c840}
+  .panel__title{margin-left:6px;text-transform:uppercase;letter-spacing:.06em}
+  .panel__body{padding:16px}
+  .panel__item{
+    display:flex;gap:11px;padding:11px 12px;border-radius:10px;
+    background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);
+    margin-bottom:9px;
+  }
+  .panel__item:last-child{margin-bottom:0}
+  .panel__ico{
+    width:30px;height:30px;flex:0 0 auto;border-radius:8px;display:grid;place-items:center;
+    background:rgba(232,89,12,.18);color:#ffb27a;
+  }
+  .panel__ico svg{width:17px;height:17px}
+  .panel__item strong{display:block;font-size:.86rem;color:#f4ede6;font-weight:700}
+  .panel__item span{font-size:.78rem;color:#a99f95}
+
+  /* ---------- Generic cards ---------- */
+  .cards{display:grid;gap:14px;margin-top:26px}
+  @media (min-width:760px){ .cards--3{grid-template-columns:repeat(3,1fr)} }
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px;box-shadow:var(--shadow);
+  }
+  .card p{margin:0;font-size:.95rem;color:var(--ink-soft)}
+  .card h3{margin-bottom:6px}
+  .alt{background:var(--paper-2)}
+
+  /* ---------- Sobre mí ---------- */
+  .about{display:grid;gap:24px;align-items:start}
+  @media (min-width:860px){ .about{grid-template-columns:1.35fr .65fr;gap:40px} }
+  .about p{font-size:1.02rem;color:var(--ink-soft);max-width:66ch}
+  .facts{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px;box-shadow:var(--shadow);
+  }
+  .facts h3{font-size:.82rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:14px}
+  .facts ul{list-style:none;padding:0;margin:0}
+  .facts li{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:.92rem;color:var(--ink-soft)}
+  .facts li:last-child{border-bottom:0}
+  .facts li b{color:var(--ink);font-weight:700}
+  .facts .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);margin-top:9px;flex:0 0 auto}
+
+  /* ---------- Casos principales ---------- */
+  .case{
+    background:var(--card);border:1px solid var(--line);border-radius:20px;
+    box-shadow:var(--shadow);overflow:hidden;margin-top:22px;
+  }
+  .case__top{
+    display:flex;flex-wrap:wrap;align-items:center;gap:12px;justify-content:space-between;
+    padding:22px 22px 18px;border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,#fffdfa,#fff);
+  }
+  .case__name{display:flex;align-items:center;gap:12px}
+  .case__logo{
+    width:42px;height:42px;flex:0 0 auto;border-radius:12px;display:grid;place-items:center;
+    color:#fff;font-weight:800;font-size:1.05rem;
+    background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+  }
+  .case__logo--green{background:linear-gradient(135deg,#1f7a4d,#145c3a)}
+  .case__name h3{margin:0;font-size:1.25rem}
+  .case__kicker{font-size:.84rem;color:var(--muted);margin:0}
+  .status{
+    display:inline-flex;align-items:center;gap:7px;font-size:.78rem;font-weight:700;
+    background:var(--green-soft);color:#145c3a;padding:6px 12px;border-radius:999px;
+  }
+  .status--soon{background:var(--accent-soft);color:var(--accent-dark)}
+  .status .pulse{width:8px;height:8px;border-radius:50%;background:var(--green);flex:0 0 auto}
+  .status--soon .pulse{background:var(--accent)}
+  .case__body{padding:6px 22px 22px}
+  .kv{padding:16px 0;border-bottom:1px solid var(--line)}
+  .kv:last-of-type{border-bottom:0}
+  .kv h4{
+    font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;color:var(--accent-dark);
+    margin:0 0 6px;font-weight:800;
+  }
+  .kv p{margin:0;font-size:.95rem;color:var(--ink-soft)}
+  .tagrow{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
+  .tag{
+    font-size:.76rem;font-weight:600;color:var(--ink-soft);background:var(--paper-2);
+    border:1px solid var(--line);padding:4px 10px;border-radius:999px;
+  }
+  .case__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+  .case__cta .btn{flex:1 1 auto;min-width:180px}
+
+  /* ---------- Otros proyectos ---------- */
+  .projects{display:grid;gap:14px;margin-top:28px}
+  @media (min-width:700px){ .projects{grid-template-columns:repeat(2,1fr)} }
+  @media (min-width:1000px){ .projects{grid-template-columns:repeat(3,1fr)} }
+  .project{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow);
+  }
+  .project__head{display:flex;align-items:center;gap:10px}
+  .project__ico{
+    width:38px;height:38px;flex:0 0 auto;border-radius:11px;display:grid;place-items:center;
+    background:var(--accent-soft);color:var(--accent-dark);
+  }
+  .project__ico svg{width:20px;height:20px}
+  .project h3{margin:0;font-size:1rem}
+  .project p{margin:0;font-size:.9rem;color:var(--ink-soft);flex:1}
+  .project__link{
+    font-size:.84rem;font-weight:700;color:var(--accent-dark);text-decoration:none;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .project__link:hover{text-decoration:underline}
+  .project__link svg{width:14px;height:14px}
+  .project__soon{font-size:.78rem;font-weight:700;color:var(--muted)}
+
+  /* ---------- Servicios / roles ---------- */
+  .duo{display:grid;gap:16px;margin-top:28px}
+  @media (min-width:820px){ .duo{grid-template-columns:repeat(2,1fr)} }
+  .panelbox{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px;box-shadow:var(--shadow);
+  }
+  .panelbox h3{font-size:1.05rem;margin-bottom:12px}
+  .checklist{list-style:none;padding:0;margin:0}
+  .checklist li{display:flex;gap:10px;margin:9px 0;font-size:.94rem;color:var(--ink-soft)}
+  .checklist li::before{
+    content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);
+    margin-top:8px;flex:0 0 auto;
+  }
+  .rolemeta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+
+  /* ---------- Stack ---------- */
+  .stacklist{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;padding:0;list-style:none;counter-reset:s}
+  .stacklist li{
+    display:inline-flex;align-items:center;gap:9px;background:var(--card);
+    border:1px solid var(--line);border-radius:999px;padding:9px 16px;
+    font-size:.9rem;font-weight:600;box-shadow:var(--shadow);
+  }
+  .stacklist li::before{
+    counter-increment:s;content:counter(s);
+    display:grid;place-items:center;width:20px;height:20px;border-radius:50%;
+    background:var(--ink);color:#fff;font-size:.66rem;font-weight:800;
+  }
+
+  /* ---------- Contacto / final ---------- */
+  .final{
+    background:
+      radial-gradient(800px 360px at 15% 0%, rgba(232,89,12,.3), transparent 60%),
+      var(--ink);
+    color:#fdf9f4;text-align:center;
+  }
+  .final h2{color:#fff}
+  .final .lead{color:#d8cfc6;margin-left:auto;margin-right:auto}
+  .final__cta{display:flex;flex-direction:column;gap:12px;max-width:360px;margin:26px auto 0}
+  .final__meta{
+    margin-top:26px;display:flex;flex-direction:column;gap:10px;align-items:center;
+    font-size:.92rem;color:#c9c0b7;
+  }
+  .final__meta a{color:#ffb27a;text-decoration:none;font-weight:600;word-break:break-word}
+  .final__meta a:hover{text-decoration:underline}
+  .final__meta span{display:inline-flex;align-items:center;gap:7px}
+  .final__meta svg{width:16px;height:16px;opacity:.85}
+  @media (min-width:640px){
+    .final__meta{flex-direction:row;justify-content:center;gap:26px;flex-wrap:wrap}
+  }
+
+  /* ---------- Footer ---------- */
+  footer{background:#100e0d;color:#8f867e;padding:26px 0;font-size:.84rem}
+  .foot{display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center}
+  @media (min-width:640px){ .foot{flex-direction:row;justify-content:space-between;text-align:left} }
+  .foot .brand{color:#e9e2db;font-size:1rem}
+  .foot .brand__mark{width:26px;height:26px;font-size:.85rem}
+
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+  .skip{position:absolute;left:-9999px}
+  .skip:focus{left:12px;top:12px;z-index:99;background:#fff;padding:10px 16px;border-radius:8px}
+</style>
+</head>
+<body>
+<a class="skip" href="#sobre-mi">Saltar al contenido</a>
+
+<!-- ============ HEADER ============ -->
+<header class="top">
+  <div class="wrap top__inner">
+    <a class="brand" href="#inicio" aria-label="Ezequiel Godoy, inicio">
+      <span class="brand__mark" aria-hidden="true">EG</span> Ezequiel Godoy
+    </a>
+    <a class="btn btn--primary btn--sm" href="mailto:godoy97@gmail.com?subject=Quiero%20hablar%20con%20vos">Hablemos</a>
+  </div>
+</header>
+
+<main id="inicio">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <span class="eyebrow">Chamical, La Rioja · Argentina</span>
+        <h1>Desarrollador full-stack. Construyo productos que ya están en producción.</h1>
+        <p class="lead">
+          Soy Ezequiel Godoy. Hago sistemas completos de punta a punta: backend, frontend, apps
+          móviles y hasta la electrónica cuando el proyecto la necesita. No hago demos lindas:
+          hago productos que la gente usa todos los días.
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--wa" href="https://wa.me/5493804760033?text=Hola%20Ezequiel%2C%20quiero%20contratarte" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 1.8A8.2 8.2 0 0 1 12 20.2a8.1 8.1 0 0 1-4.1-1.1l-.4-.2-3 .8.8-2.9-.2-.4A8.2 8.2 0 0 1 12 3.8Z"/></svg>
+            Quiero contratarte
+          </a>
+          <a class="btn btn--ghost" href="#casos" style="color:#fdf9f4;border-color:rgba(255,255,255,.35)">Ver mi trabajo</a>
+        </div>
+        <p class="hero__note">También podés escribirme a <strong>godoy97@gmail.com</strong>.</p>
+        <ul class="chips">
+          <li>Full-stack</li>
+          <li>Producto</li>
+          <li>Electrónica</li>
+          <li>IA/MCP</li>
+        </ul>
+      </div>
+
+      <!-- Panel resumen (hecho con CSS, sin imágenes externas) -->
+      <div class="panel" role="img" aria-label="Resumen: TUSTOCK en producción con un cliente pagando, COMANDER en etapa de lanzamiento, y proyectos propios de software, producto y electrónica">
+        <div class="panel__bar" aria-hidden="true">
+          <span class="panel__dot"></span><span class="panel__dot panel__dot--y"></span><span class="panel__dot panel__dot--g"></span>
+          <span class="panel__title">En qué ando</span>
+        </div>
+        <div class="panel__body" aria-hidden="true">
+          <div class="panel__item">
+            <span class="panel__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8l9 5 9-5Z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg></span>
+            <span><strong>TUSTOCK — en producción</strong><span>Gestión de stock y ventas para comercios, con un cliente pagando.</span></span>
+          </div>
+          <div class="panel__item">
+            <span class="panel__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v5H4z"/><path d="M4 13h16v7H4z"/><path d="M8 6.5h.01M8 16.5h.01"/></svg></span>
+            <span><strong>COMANDER — en lanzamiento</strong><span>Comandas para gastronomía: mostrador, cocina y historial.</span></span>
+          </div>
+          <div class="panel__item">
+            <span class="panel__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M10 3v2M14 3v2M10 19v2M14 19v2M3 10h2M3 14h2M19 10h2M19 14h2"/></svg></span>
+            <span><strong>Hardware y electrónica</strong><span>ESP32, PCB en KiCad, firmware propio y equipos de taller.</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOBRE MÍ ============ -->
+  <section class="section" id="sobre-mi">
+    <div class="wrap">
+      <span class="eyebrow">Sobre mí</span>
+      <div class="about">
+        <div>
+          <h2>Trabajo en la intersección entre el software, el producto y el fierro.</h2>
+          <p>
+            Soy de Chamical, La Rioja, y trabajo en remoto con la misma comodidad. Arranqué en
+            atención al cliente —nueve años y cinco meses en Telecom Argentina— y de ahí me pasé a
+            construir sistemas: hoy tengo un SaaS en producción con un cliente pagando, un sistema de
+            comandas en etapa de lanzamiento y una lista de proyectos propios de software y
+            electrónica.
+          </p>
+          <p>
+            Lo que me hace distinto es que no me quedo en el código: diseño el producto, lo pongo en
+            manos del cliente, lo soporto y, si el proyecto necesita medir, mover o iluminar algo,
+            también armo la electrónica. Software + hardware + producto, en la misma persona.
+          </p>
+        </div>
+        <aside class="facts">
+          <h3>En corto</h3>
+          <ul>
+            <li><span class="dot" aria-hidden="true"></span><span>Base en <b>Chamical, La Rioja</b>. Disponible para trabajo <b>remoto</b>.</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span><b>TUSTOCK</b>: SaaS en producción con un cliente pagando.</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span><b>COMANDER</b>: producto completo, en etapa de lanzamiento.</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span>Taller propio de <b>CNC, láser e impresión 3D</b>.</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span>9 años y 5 meses en atención al cliente (Telecom Argentina).</span></li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CASOS PRINCIPALES ============ -->
+  <section class="section alt" id="casos">
+    <div class="wrap">
+      <span class="eyebrow">Casos principales</span>
+      <h2>Dos productos, no dos ideas.</h2>
+      <p class="lead">
+        Los dos casos que mejor me representan: un sistema en producción con un cliente real y otro
+        ya construido que está saliendo a buscar sus primeros locales.
+      </p>
+
+      <!-- TUSTOCK -->
+      <article class="case">
+        <div class="case__top">
+          <div class="case__name">
+            <span class="case__logo case__logo--green" aria-hidden="true">T</span>
+            <div>
+              <h3>TUSTOCK</h3>
+              <p class="case__kicker">Gestión de stock y ventas para comercios · SaaS</p>
+            </div>
+          </div>
+          <span class="status"><span class="pulse" aria-hidden="true"></span>En producción con un cliente pagando</span>
+        </div>
+        <div class="case__body">
+          <div class="kv">
+            <h4>Problema</h4>
+            <p>
+              Kioscos, librerías y almacenes llevan el stock y las ventas a mano o en planillas, con
+              equipos viejos y, muchas veces, sin internet confiable. Necesitaban un sistema simple
+              que no dependiera de la nube para funcionar.
+            </p>
+          </div>
+          <div class="kv">
+            <h4>Solución</h4>
+            <p>
+              Un sistema que corre 100% en la PC del local, se instala en 15 minutos y no requiere
+              ser técnico para usarlo. Incluye una app Android para escanear códigos con la cámara
+              del celular y un monitor cloud opcional para ver el local en remoto. Optimizado a
+              propósito para hardware débil (2 núcleos / 4 GB de RAM).
+            </p>
+          </div>
+          <div class="kv">
+            <h4>Stack</h4>
+            <div class="tagrow">
+              <span class="tag">Python</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">SQLAlchemy</span>
+              <span class="tag">SQLite (WAL)</span>
+              <span class="tag">React 18</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Vite</span>
+              <span class="tag">Kotlin / Android</span>
+              <span class="tag">ML Kit · CameraX</span>
+              <span class="tag">Monitor cloud (Railway)</span>
+            </div>
+          </div>
+          <div class="kv">
+            <h4>Resultado</h4>
+            <p>
+              Producto en producción, instalado en locales reales y con un cliente pagando. Lo llevé de
+              punta a punta: código, instalación, capacitación y soporte. Funciona sin internet, se
+              actualiza por pendrive y está pensado para que lo use cualquiera.
+            </p>
+          </div>
+          <div class="case__cta">
+            <a class="btn btn--primary" href="https://tustocksoft.com.ar" target="_blank" rel="noopener">Ver TUSTOCK</a>
+            <a class="btn btn--ghost" href="https://wa.me/5493804760033?text=Hola%2C%20me%20interesa%20algo%20como%20TUSTOCK" target="_blank" rel="noopener">Consultar por un sistema así</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- COMANDER -->
+      <article class="case">
+        <div class="case__top">
+          <div class="case__name">
+            <span class="case__logo" aria-hidden="true">C</span>
+            <div>
+              <h3>COMANDER</h3>
+              <p class="case__kicker">Sistema de comandas para gastronomía · producto</p>
+            </div>
+          </div>
+          <span class="status status--soon"><span class="pulse" aria-hidden="true"></span>En etapa de lanzamiento</span>
+        </div>
+        <div class="case__body">
+          <div class="kv">
+            <h4>Problema</h4>
+            <p>
+              Los locales chicos toman pedidos por WhatsApp y por apps de delivery: los mensajes se
+              pisan en la hora pico, el pedido se arma tres veces y los datos del cliente quedan en
+              la app, no en el local.
+            </p>
+          </div>
+          <div class="kv">
+            <h4>Solución</h4>
+            <p>
+              Un sistema de comandas que corre en la computadora del local: el mostrador toma el
+              pedido, la cocina lo recibe en un tablero con timer, el historial lo guarda y el
+              encargado administra el menú y las promociones. Sin comisión por venta y sin depender
+              de internet para operar.
+            </p>
+          </div>
+          <div class="kv">
+            <h4>Stack</h4>
+            <div class="tagrow">
+              <span class="tag">Next.js 16</span>
+              <span class="tag">React 19</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Prisma</span>
+              <span class="tag">SQLite</span>
+              <span class="tag">Tailwind CSS 4</span>
+            </div>
+          </div>
+          <div class="kv">
+            <h4>Resultado</h4>
+            <p>
+              Producto completo y funcional: mostrador, cocina (KDS) con timers, historial, admin de
+              menú, promociones y login de encargado, con el menú real de una hamburguesería cargado
+              para las demos. <strong>Está en etapa de lanzamiento: todavía no tiene clientes
+              cerrados</strong>, y lo digo claro — lo que hay es el sistema andando y listo para
+              probar.
+            </p>
+          </div>
+          <div class="case__cta">
+            <a class="btn btn--primary" href="https://kamiikasee05.github.io/comander-landing/" target="_blank" rel="noopener">Ver COMANDER</a>
+            <a class="btn btn--ghost" href="https://wa.me/5493804760033?text=Hola%2C%20quiero%20ver%20COMANDER" target="_blank" rel="noopener">Pedir una demo</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ OTROS PROYECTOS ============ -->
+  <section class="section" id="proyectos">
+    <div class="wrap">
+      <span class="eyebrow">Otros proyectos</span>
+      <h2>Donde se ve lo que hago cuando no hay cliente de por medio.</h2>
+      <p class="lead">
+        Proyectos propios de software, hardware y herramientas para agentes de IA. Los repos
+        públicos están linkeados; lo que todavía no es público, se describe sin link.
+      </p>
+      <div class="projects">
+
+        <article class="project">
+          <div class="project__head">
+            <span class="project__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></span>
+            <h3>macropad-ble</h3>
+          </div>
+          <p>
+            Macropad 4×4 por Bluetooth con ESP32-C3: firmware propio (HID con NimBLE), PCB diseñada
+            en KiCad y app de configuración por Web Bluetooth. Hardware y software en el mismo
+            proyecto.
+          </p>
+          <a class="project__link" href="https://github.com/kamiikasee05/macropad-ble" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2A10 10 0 0 0 8.8 21.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.3-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .3.3.7 1 .7 2v3c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg>
+            github.com/kamiikasee05/macropad-ble
+          </a>
+        </article>
+
+        <article class="project">
+          <div class="project__head">
+            <span class="project__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M9 10h.01M12 10h.01M15 10h.01M18 10h.01M8 14h8"/></svg></span>
+            <h3>vsg-bellatrix</h3>
+          </div>
+          <p>
+            Ingeniería inversa del protocolo HID de un teclado (Sonix/HFD): capturé el tráfico,
+            lo documenté y construí un software propio en Python con GUI e instalador para
+            reemplazar el oficial.
+          </p>
+          <a class="project__link" href="https://github.com/kamiikasee05/vsg-bellatrix" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2A10 10 0 0 0 8.8 21.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.3-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .3.3.7 1 .7 2v3c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg>
+            github.com/kamiikasee05/vsg-bellatrix
+          </a>
+        </article>
+
+        <article class="project">
+          <div class="project__head">
+            <span class="project__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 0-4 4 3 3 0 0 0-1 5.8V15a4 4 0 0 0 8 0v-2.2A3 3 0 0 0 16 7a4 4 0 0 0-4-4Z"/><path d="M12 7v8"/></svg></span>
+            <h3>kortex</h3>
+          </div>
+          <p>
+            Servidor MCP en Node/TypeScript + SQLite para darle "memoria" a agentes de IA, con
+            búsqueda semántica local e historial de actividad. Cerebro propio, sin depender de la
+            nube.
+          </p>
+          <span class="project__soon">Repositorio próximamente</span>
+        </article>
+
+        <article class="project">
+          <div class="project__head">
+            <span class="project__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></span>
+            <h3>laser-server</h3>
+          </div>
+          <p>
+            Servidor de control para una cortadora láser GRBL: FastAPI y manejo de flujo serie con
+            pausa, reanudación y avance real por acknowledgements, más un visor del recorrido en
+            vivo.
+          </p>
+          <span class="project__soon">Proyecto interno</span>
+        </article>
+
+        <article class="project">
+          <div class="project__head">
+            <span class="project__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></span>
+            <h3>opencode-mobile</h3>
+          </div>
+          <p>
+            Cliente Android nativo (Kotlin + Jetpack Compose) para un servidor de IA: sesiones,
+            chat con streaming, permisos y visor de herramientas. Compilado y distribuido vía
+            GitHub Actions.
+          </p>
+          <a class="project__link" href="https://github.com/kamiikasee05/opencode-mobile" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2A10 10 0 0 0 8.8 21.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.3-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .3.3.7 1 .7 2v3c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg>
+            github.com/kamiikasee05/opencode-mobile
+          </a>
+        </article>
+
+        <article class="project">
+          <div class="project__head">
+            <span class="project__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l4-4 3 3 5-6 6 7"/><circle cx="7" cy="7" r="2"/><path d="M3 21h18"/></svg></span>
+            <h3>Taller: CNC, láser y 3D</h3>
+          </div>
+          <p>
+            No es un repo: es el taller. Corte y grabado láser, impresión 3D (FDM con Klipper y
+            resina), CNC y torno. Ahí nacen los prototipos y las piezas de los proyectos de
+            electrónica.
+          </p>
+          <span class="project__soon">Hardware propio</span>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICIOS + ROLES ============ -->
+  <section class="section alt" id="servicios">
+    <div class="wrap">
+      <span class="eyebrow">Trabajemos juntos</span>
+      <h2>Qué puedo hacer por vos.</h2>
+      <p class="lead">
+        Lo mismo que hice con TUSTOCK y COMANDER: entender el problema real, construir el sistema y
+        dejarlo funcionando. Para clientes y para equipos.
+      </p>
+
+      <div class="duo">
+        <div class="panelbox">
+          <h3>Para clientes: sistemas a medida</h3>
+          <ul class="checklist">
+            <li><strong>Sistemas de gestión:</strong> ventas, stock, pedidos, historial y back-office para tu negocio.</li>
+            <li><strong>Integraciones:</strong> pagos, WhatsApp, APIs de terceros y tus herramientas actuales.</li>
+            <li><strong>Automatización de procesos:</strong> tareas repetitivas que hoy se hacen a mano.</li>
+            <li><strong>Software para hardware:</strong> control de equipos, sensores, IoT y electrónica aplicada.</li>
+            <li><strong>Productos que corren en tu PC:</strong> sin depender de internet ni de un servicio de afuera.</li>
+          </ul>
+          <div class="rolemeta">
+            <a class="btn btn--primary btn--sm" href="https://wa.me/5493804760033?text=Hola%2C%20tengo%20un%20proyecto%20para%20contarte" target="_blank" rel="noopener">Contame tu proyecto</a>
+          </div>
+        </div>
+
+        <div class="panelbox" id="remoto">
+          <h3>Para equipos: roles remotos</h3>
+          <ul class="checklist">
+            <li><strong>Full-stack</strong> con foco en productos: del backend a la interfaz y al deploy.</li>
+            <li><strong>Productos Python / React:</strong> FastAPI + React/TypeScript, con datos en SQLite/PostgreSQL.</li>
+            <li><strong>Integración con IA:</strong> APIs de LLM, agentes, MCP y automatización.</li>
+            <li><strong>Apps Android nativas</strong> en Kotlin cuando el proyecto lo pide.</li>
+            <li><strong>Disponibilidad remota</strong> desde Argentina (UTC-3), para equipos de AR y LATAM.</li>
+          </ul>
+          <div class="rolemeta">
+            <a class="btn btn--ghost btn--sm" href="mailto:godoy97@gmail.com?subject=Oportunidad%20remota">Enviar una propuesta</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STACK ============ -->
+  <section class="section" id="stack">
+    <div class="wrap">
+      <span class="eyebrow">Stack</span>
+      <h2>Con qué trabajo, en orden de relevancia.</h2>
+      <p class="lead">La lista es larga, pero el orden importa: esto es lo que uso todos los días.</p>
+      <ol class="stacklist">
+        <li>Python</li>
+        <li>TypeScript</li>
+        <li>React</li>
+        <li>Next.js</li>
+        <li>FastAPI</li>
+        <li>SQLite / Prisma</li>
+        <li>Kotlin / Android</li>
+        <li>C / electrónica</li>
+        <li>MCP / IA</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ CONTACTO ============ -->
+  <section class="section final" id="contacto">
+    <div class="wrap">
+      <h2>Si tu proyecto necesita a alguien que lo lleve hasta el final, hablemos.</h2>
+      <p class="lead">
+        Estoy disponible para clientes que necesitan un sistema a medida y para equipos que buscan
+        un perfil full-stack en remoto. Respondo yo, no un formulario.
+      </p>
+      <div class="final__cta">
+        <a class="btn btn--wa btn--block" href="https://wa.me/5493804760033?text=Hola%20Ezequiel%2C%20quiero%20contratarte" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 1.8A8.2 8.2 0 0 1 12 20.2a8.1 8.1 0 0 1-4.1-1.1l-.4-.2-3 .8.8-2.9-.2-.4A8.2 8.2 0 0 1 12 3.8Z"/></svg>
+          Escribime por WhatsApp
+        </a>
+        <a class="btn btn--light btn--block" href="mailto:godoy97@gmail.com?subject=Quiero%20hablar%20con%20vos">Escribime por email</a>
+      </div>
+      <div class="final__meta">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          <a href="mailto:godoy97@gmail.com">godoy97@gmail.com</a>
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 2.5 11 13"/><path d="M21.5 2.5 15 21l-4-8-8-4Z"/></svg>
+          <a href="https://wa.me/5493804760033" target="_blank" rel="noopener">+54 9 3804 760033</a>
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3zM10 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-4z"/></svg>
+          <a href="https://linkedin.com/in/ricardo-ezequiel-godoy" target="_blank" rel="noopener">LinkedIn</a>
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2A10 10 0 0 0 8.8 21.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.3-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .3.3.7 1 .7 2v3c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg>
+          <a href="https://github.com/kamiikasee05" target="_blank" rel="noopener">GitHub</a>
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          Chamical, La Rioja
+        </span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="#inicio" aria-label="Ezequiel Godoy, volver arriba">
+      <span class="brand__mark" aria-hidden="true">EG</span> Ezequiel Godoy
+    </a>
+    <span>Desarrollador full-stack · Chamical, La Rioja · Software, producto y electrónica</span>
+  </div>
+</footer>
+
+</body>
+</html>
